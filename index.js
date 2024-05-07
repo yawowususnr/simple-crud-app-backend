@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const Product = require("./models/product.model.js");
 const productRoute = require("./routes/product.route.js");
 const app = express();
+require("dotenv").config();
+
+const api_key = process.env.API_KEY;
 
 // middleware
 app.use(express.json());
@@ -17,7 +20,7 @@ app.get("/", function (req, res) {
 
 mongoose
   .connect(
-    "mongodb+srv://yawsnr:mQgJvWEwywykhQiL@backenddb.lvtoukk.mongodb.net/Node-API?retryWrites=true&w=majority&appName=BackendDB"
+    `mongodb+srv://yawsnr:${api_key}@backenddb.lvtoukk.mongodb.net/Node-API?retryWrites=true&w=majority&appName=BackendDB`
   )
   .then(() => {
     console.log("Connected to DB!");
